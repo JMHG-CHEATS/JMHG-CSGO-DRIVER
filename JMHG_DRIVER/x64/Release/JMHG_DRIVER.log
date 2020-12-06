@@ -1,0 +1,23 @@
+﻿  Building 'JMHG_DRIVER' with toolset 'WindowsKernelModeDriver10.0' and the 'Universal' target platform.
+  Stamping x64\Release\JMHG_DRIVER.inf
+  Stamping [Version] section with DriverVer=12/06/2020,13.18.15.699
+  JMHG_DRIVER.c
+  JMHG_DRIVER.vcxproj -> C:\Users\iamja\source\repos\JMHG_DRIVER\x64\Release\JMHG_DRIVER.sys
+  Done Adding Additional Store
+  Successfully signed: C:\Users\iamja\source\repos\JMHG_DRIVER\x64\Release\JMHG_DRIVER.sys
+  
+  Driver is 'Universal'.
+  .........................
+  Signability test complete.
+  
+  Errors:
+  None
+  
+  Warnings:
+  None
+  
+  Catalog generation complete.
+  C:\Users\iamja\source\repos\JMHG_DRIVER\x64\Release\JMHG_DRIVER\jmhg_driver.cat
+  Done Adding Additional Store
+  Successfully signed: C:\Users\iamja\source\repos\JMHG_DRIVER\x64\Release\JMHG_DRIVER\jmhg_driver.cat
+  

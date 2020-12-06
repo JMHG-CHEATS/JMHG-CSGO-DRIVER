@@ -1,0 +1,90 @@
+;
+; JMHG_DRIVER.inf
+;
+
+[Version]
+Signature="$WINDOWS NT$"
+Class=Sample ; TODO: edit Class
+ClassGuid={78A1C341-4539-11d3-B88D-00C04FAD5171} ; TODO: edit ClassGuid
+Provider=%ManufacturerName%
+CatalogFile=JMHG_DRIVER.cat
+DriverVer = 12/06/2020,13.18.15.699
+PnpLockDown=1
+
+[DestinationDirs]
+DefaultDestDir = 12
+JMHG_DRIVER_Device_CoInstaller_CopyFiles = 11
+
+; ================= Class section =====================
+
+[ClassInstall32]
+Addreg=SampleClassReg
+
+[SampleClassReg]
+HKR,,,0,%ClassName%
+HKR,,Icon,,-5
+
+[SourceDisksNames]
+1 = %DiskName%,,,""
+
+[SourceDisksFiles]
+JMHG_DRIVER.sys  = 1,,
+;
+
+
+;*****************************************
+; Install Section
+;*****************************************
+
+[Manufacturer]
+%ManufacturerName%=Standard,NTamd64
+
+[Standard.NTamd64]
+%JMHG_DRIVER.DeviceDesc%=JMHG_DRIVER_Device, Root\JMHG_DRIVER ; TODO: edit hw-id
+
+[JMHG_DRIVER_Device.NT]
+CopyFiles=Drivers_Dir
+
+[Drivers_Dir]
+JMHG_DRIVER.sys
+
+;-------------- Service installation
+[JMHG_DRIVER_Device.NT.Services]
+AddService = JMHG_DRIVER,%SPSVCINST_ASSOCSERVICE%, JMHG_DRIVER_Service_Inst
+
+; -------------- JMHG_DRIVER driver install sections
+[JMHG_DRIVER_Service_Inst]
+DisplayName    = %JMHG_DRIVER.SVCDESC%
+ServiceType    = 1               ; SERVICE_KERNEL_DRIVER
+StartType      = 3               ; SERVICE_DEMAND_START
+ErrorControl   = 1               ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\JMHG_DRIVER.sys
+
+;
+;--- JMHG_DRIVER_Device Coinstaller installation ------
+;
+
+[JMHG_DRIVER_Device.NT.CoInstallers]
+AddReg=JMHG_DRIVER_Device_CoInstaller_AddReg
+CopyFiles=JMHG_DRIVER_Device_CoInstaller_CopyFiles
+
+[JMHG_DRIVER_Device_CoInstaller_AddReg]
+;
+
+
+[JMHG_DRIVER_Device_CoInstaller_CopyFiles]
+;
+
+
+[JMHG_DRIVER_Device.NT.Wdf]
+KmdfService =  JMHG_DRIVER, JMHG_DRIVER_wdfsect
+[JMHG_DRIVER_wdfsect]
+KmdfLibraryVersion = 1.15
+
+[Strings]
+SPSVCINST_ASSOCSERVICE= 0x00000002
+ManufacturerName="<Your manufacturer name>" ;TODO: Replace with your manufacturer name
+ClassName="Samples" ; TODO: edit ClassName
+DiskName = "JMHG_DRIVER Installation Disk"
+JMHG_DRIVER.DeviceDesc = "JMHG_DRIVER Device"
+JMHG_DRIVER.SVCDESC = "JMHG_DRIVER Service"
